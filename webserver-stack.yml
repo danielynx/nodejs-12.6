@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  webserver:
+    image: "node:12.6.0-stretch"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "1"
+          memory: 900M
+    ports:
+      - "80:80"    
+    networks:
+      - webnet
+  visualizer:
+    image: dockersamples/visualizer:stable
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - webnet
+networks:
+  webnet:
