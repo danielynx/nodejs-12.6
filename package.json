@@ -1,13 +1,13 @@
 {
-  "name": "demo-app",
+  "name": "danielbackes/nodejs-12.6",
   "version": "0.0.1",
-  "description": "",
+  "description": "NodeJS 12.6 template project and environment on docker swarm cluster.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["NodeJS", "Docker Swarm"],
+  "author": "Daniel Backes",
   "license": "ISC",
   "dependencies": {
     "compression": "^1.7.3",
