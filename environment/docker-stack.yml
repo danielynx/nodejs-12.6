@@ -1,19 +1,19 @@
 version: '3.7'
 services:
-  webserver:
+  node_alpine:
     image: node:12.6.0-alpine
     networks:
       - traefik_network
     working_dir: /nodejs
-    command: sh entrypoint.sh
+    command: sh environment/entrypoint.sh
     volumes:
-      - ".:/nodejs"
+      - "../:/nodejs"
     deploy:
       mode: global
       labels:
        - traefik.port=3000
        - traefik.docker.network=traefik_network
-       - traefik.frontend.rule=Host:nodejs-dev.com
+       - traefik.frontend.rule=Host:nodejs-dev.tech
       resources:
         limits:
           cpus: "1"
@@ -44,13 +44,13 @@ services:
     volumes:
       - portainer_data:/data
     networks:
-      - agent_network
+      - agent_network      
     deploy:
       mode: replicated
       replicas: 1
       placement:
         constraints: [node.role == manager]     
-  reverse_proxy:
+  traefik:
     image: traefik
     ports:
      - "80:80"
@@ -69,10 +69,6 @@ services:
       - --accessLog
     volumes:      
       - "/var/run/docker.sock:/var/run/docker.sock"
-    depends_on:
-      - webserver
-      - agent
-      - portainer
     deploy:
       mode: replicated
       replicas: 1
