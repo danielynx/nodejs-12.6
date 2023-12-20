@@ -1,0 +1,23 @@
+{
+  "name": "@danielynx/nodejs-12.6",
+  "version": "0.0.1",
+  "description": "NodeJS 12.6 template project to run development environment on docker swarm cluster.",
+  "keywords": [
+    "NodeJS",
+    "Docker Swarm"
+  ],
+  "author": "Daniel B.",
+  "email": "danielynx@proton.me",
+  "license": "MIT",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "compression": "^1.7.3",
+    "express": "^4.16.4",
+    "helmet": "^3.15.0",
+    "morgan": "^1.9.1",
+    "yarn": "^1.17.3"
+  }
+}
